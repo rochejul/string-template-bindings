@@ -12,7 +12,20 @@ describe('bindings', () => {
     const expected = 'this is a string';
 
     // Act
-    const actual = bindings`this is a string`;
+    const actual = bindings(`this is a string`);
+
+    // Assert
+    expect(actual).toEqual(expected);
+  });
+
+  test('it should return the binded expression', () => {
+    // Arrange
+    const expected = 'this is a string with expr: foo';
+
+    // Act
+    const actual = bindings(`this is a string with expr: #{expr}`, {
+      expr: 'foo',
+    });
 
     // Assert
     expect(actual).toEqual(expected);
