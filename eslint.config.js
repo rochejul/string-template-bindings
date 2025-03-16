@@ -40,6 +40,8 @@ export const eslintJest = {
     jest,
   },
   rules: {
+    'prettier/prettier': 'warn',
+    'no-unused-vars': ['off', { argsIgnorePattern: '^_' }],
     ...jest.configs['flat/all'].rules,
     'jest/prefer-expect-assertions': 'off',
     'jest/consistent-test-it': ['error', { fn: 'test' }],

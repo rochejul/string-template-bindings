@@ -15,7 +15,7 @@ describe('bindings', () => {
     const actual = bindings(`this is a string`);
 
     // Assert
-    expect(actual).toEqual(expected);
+    expect(actual.toString()).toEqual(expected);
   });
 
   test('it should return the binded expression', () => {
@@ -28,6 +28,21 @@ describe('bindings', () => {
     });
 
     // Assert
-    expect(actual).toEqual(expected);
+    expect(actual.toString()).toEqual(expected);
+  });
+
+  test('it should update the returned string', () => {
+    // Arrange
+    const expected = 'this is a string with expr: not foo';
+    const mapping = {
+      expr: 'foo',
+    };
+
+    // Act
+    const actual = bindings(`this is a string with expr: #{expr}`, mapping);
+    mapping.expr = 'not foo';
+
+    // Assert
+    expect(actual.toString()).toEqual(expected);
   });
 });

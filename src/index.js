@@ -1,13 +1,11 @@
-function interpolate(string, mapping) {
-  const names = Object.keys(mapping);
-  const vals = Object.values(mapping);
-
-  return new Function(...names, `return \`${string}\`;`)(...vals);
-}
+import { BindindString } from './binding-string.js';
 
 export function bindings(strings, mapping = {}) {
+  /** @type String */
   const template = (Array.isArray(strings) ? strings.join('') : strings) ?? '';
+
+  /** @type String */
   const convertedTemplate = template.replace('#{', '${');
 
-  return interpolate(convertedTemplate, mapping);
+  return new BindindString(convertedTemplate, mapping);
 }
